@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Car - GL Cars Chennai</title>
+
+  <!-- EXACT SAME FONTS & COLORS -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{--gold:#ffb84d;--electric:#00ffea;--dark:#0a0a0a;--glass:rgba(20,20,35,0.6);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Exo 2',sans-serif;background:var(--dark);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    body::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,255,234,0.15),rgba(0,0,0,0.95));z-index:1;}
+
+    .back{position:fixed;top:20px;left:20px;z-index:9999;background:rgba(255,255,255,0.1);padding:14px 24px;border-radius:50px;font-weight:600;backdrop-filter:blur(20px);border:1px solid rgba(0,255,234,0.3);text-decoration:none;transition:0.4s;}
+    .back:hover{background:var(--gold);color:#000;}
+
+    .box{max-width:480px;width:92%;background:var(--glass);padding:60px 40px;border-radius:32px;backdrop-filter:blur(20px);border:1px solid rgba(0,255,234,0.3);box-shadow:0 20px 80px rgba(0,255,234,0.2);position:relative;z-index:2;text-align:center;}
+    h1{font-family:'Orbitron';font-size:52px;color:transparent;background:linear-gradient(45deg,var(--gold),var(--electric));-webkit-background-clip:text;margin-bottom:10px;}
+    .tagline{font-size:19px;opacity:0.9;margin-bottom:40px;}
+
+    .progress{height:8px;background:#222;border-radius:4px;margin:40px 0;overflow:hidden;}
+    .bar{height:100%;background:var(--electric);width:20%;border-radius:4px;transition:width 0.6s ease;box-shadow:0 0 20px rgba(0,255,234,0.6);}
+
+    .step{display:none;}
+    .step.active{display:block;animation:fade 0.7s;}
+    .question{font-size:38px;margin:30px 0;line-height:1.3;}
+    input,select{width:100%;padding:20px;font-size:19px;border:none;border-radius:16px;background:rgba(255,255,255,0.05);color:#fff;margin:15px 0;border:1px solid rgba(0,255,234,0.3);}
+    input:focus,select:focus{outline:none;border-color:var(--electric);box-shadow:0 0 20px rgba(0,255,234,0.4);}
+
+    .next{background:linear-gradient(45deg,var(--gold),var(--electric));color:#000;padding:20px;border-radius:50px;font-weight:700;font-size:20px;margin-top:30px;transition:0.4s;box-shadow:0 0 30px rgba(0,255,234,0.5);}
+    .next:hover{transform:scale(1.08);}
+
+    .wa{position:fixed;bottom:30px;right:30px;background:#25D366;width:75px;height:75px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 0 50px rgba(37,211,102,0.8);animation:float 3s infinite;}
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+    @keyframes fade{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back">Back</a>
+
+  <div class="box">
+    <h1>GL CARS</h1>
+    <p class="tagline">Book in 30 seconds • Instant Confirmation</p>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+
+    <div class="step active" id="s1"><p class="question">Your name?</p><input type="text" id="name" placeholder="Enter name"><div class="next" onclick="go(2)">Next</div></div>
+    <div class="step" id="s2"><p class="question">WhatsApp number?</p><input type="tel" id="phone" placeholder="9876543210"><div class="next" onclick="go(3)">Next</div></div>
+    <div class="step" id="s3"><p class="question">Choose car</p><select id="car"><option value="" disabled selected>Select car</option><option>Maruti Swift – ₹2,000</option><option>Maruti Baleno – ₹2,500</option><option>Toyota Innova Crysta – ₹3,500</option><option>Hyundai Creta – ₹3,000</option><option>Maruti Alto – ₹1,500</option></select><div class="next" onclick="go(4)">Next</div></div>
+    <div class="step" id="s4"><p class="question">Pick-up date?</p><input type="date" id="date"><div class="next" onclick="go(5)">Next</div></div>
+    <div class="step" id="s5"><p class="question">Pick-up time?</p><input type="time" id="time"><div class="next" onclick="send()">Confirm Booking</div></div>
+  </div>
+
+  <a href="https://wa.me/918144322422" class="wa">WhatsApp</a>
+
+  <script>
+    document.body.style.backgroundImage = `url('assets/${["swift.jpg","baleno.jpg","crysta.jpg","creta.jpg","alto.jpg"][Math.floor(Math.random()*5)]}')`;
+
+    let step=1;
+    function go(n){
+      const field = document.querySelector(`#s${step} input`) || document.querySelector(`#s${step} select`);
+      if(!field.value.trim()){field.style.borderColor="#ff0066";setTimeout(()=>field.style.borderColor="",1500);return;}
+      document.getElementById(`s${step}`).classList.remove('active');
+      step=n;
+      document.getElementById(`s${step}`).classList.add('active');
+      document.getElementById('bar').style.width = (step/5)*100 + '%';
+    }
+    function send(){
+      if(!document.getElementById('time').value) return alert("Please select time");
+      const data = {n:document.getElementById('name').value,p:document.getElementById('phone').value,c:document.getElementById('car').value,d:document.getElementById('date').value,t:document.getElementById('time').value};
+      const msg1 = `NEW BOOKING!\nName: ${data.n}\nPhone: ${data.p}\nCar: ${data.c}\nDate: ${data.d}\nTime: ${data.t}`;
+      const msg2 = `Hi ${data.n}!\nYour ${data.c} is confirmed for ${data.d} at ${data.t}\nThank you! GL Cars`;
+      window.open(`https://wa.me/918144322422?text=${encodeURIComponent(msg1)}`,'_blank');
+      setTimeout(()=>window.open(`https://wa.me/91${data.p}?text=${encodeURIComponent(msg2)}`,'_blank'),1000);
+      setTimeout(()=>{alert("Booking Confirmed! Check WhatsApp");location.href="index.html";},2000);
+    }
+    document.getElementById('date').min = new Date().toISOString().split('T')[0];
+  </script>
+</body>
+</html>

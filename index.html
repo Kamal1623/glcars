@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GL Cars Chennai | Luxury Self-Drive Rental 2025</title>
+  <meta name="description" content="Premium self-drive cars in Chennai • Innova Crysta • Creta • Swift • Baleno • Alto • Airport pickup • ₹1500-₹3500/day"/>
+
+  <!-- Same fonts for both pages -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root { --gold:#ffb84d; --electric:#00ffea; --dark:#0a0a0a; --glass:rgba(20,20,35,0.6); }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Exo 2',sans-serif;background:#000;color:#fff;overflow-x:hidden;}
+    video,img{max-width:100%;display:block;}
+
+    header{position:fixed;top:0;width:100%;padding:20px 5%;background:linear-gradient(to bottom,rgba(0,0,0,0.8),transparent);backdrop-filter:blur(15px);z-index:1000;display:flex;justify-content:space-between;align-items:center;}
+    .logo{font-family:'Orbitron';font-size:38px;background:linear-gradient(90deg,var(--gold),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav a{color:#fff;margin-left:35px;font-weight:500;position:relative;}
+    .nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--electric);transition:0.4s;}
+    .nav a:hover::after{width:100%;}
+
+    .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+    .hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.7);}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,255,234,0.1),rgba(0,0,0,0.9));}
+    .hero-content{position:relative;z-index:2;padding:0 20px;}
+    .hero h1{font-family:'Orbitron';font-size:72px;margin-bottom:20px;background:linear-gradient(45deg,var(--gold),var(--electric),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glow 3s infinite alternate;}
+    .hero p{font-size:24px;margin-bottom:40px;opacity:0.9;}
+    .cta{background:linear-gradient(45deg,var(--gold),#fff);color:#000;padding:20px 60px;border-radius:60px;font-size:22px;font-weight:700;box-shadow:0 0 40px rgba(255,184,77,0.6);transition:0.5s;}
+    .cta:hover{transform:scale(1.1);box-shadow:0 0 60px rgba(0,255,234,0.8);}
+
+    .section{padding:140px 5% 100px;}
+    .title{font-family:'Orbitron';font-size:56px;text-align:center;margin-bottom:80px;background:linear-gradient(90deg,var(--gold),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+    .cars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px;max-width:1600px;margin:0 auto;}
+    .car-card{background:var(--glass);border-radius:28px;overflow:hidden;border:1px solid rgba(0,255,234,0.2);transition:0.8s;backdrop-filter:blur(15px);box-shadow:0 10px 40px rgba(0,0,0,0.7);}
+    .car-card:hover{transform:translateY(-30px) scale(1.03);border-color:var(--electric);box-shadow:0 30px 80px rgba(0,255,234,0.3);}
+    .car-card img{width:100%;height:260px;object-fit:cover;transition:0.6s;}
+    .car-card:hover img{transform:scale(1.15);filter:brightness(1.2);}
+    .info{padding:35px;text-align:center;}
+    .info h3{font-size:28px;margin-bottom:12px;}
+    .price{font-family:'Orbitron';font-size:48px;color:var(--gold);margin:15px 0;text-shadow:0 0 20px rgba(255,184,77,0.6);}
+    .book{background:linear-gradient(45deg,var(--gold),var(--electric));color:#000;padding:16px 45px;border-radius:50px;font-weight:700;font-size:18px;box-shadow:0 0 30px rgba(0,255,234,0.5);transition:0.4s;}
+    .book:hover{transform:scale(1.12);}
+
+    .wa-float{position:fixed;bottom:30px;right:30px;background:#25D366;width:75px;height:75px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 0 50px rgba(37,211,102,0.8);animation:float 3s infinite;z-index:999;}
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+    @keyframes glow{from{text-shadow:0 0 20px var(--gold);}to{text-shadow:0 0 40px var(--electric);}}
+
+    footer{text-align:center;padding:80px 20px;background:#050505;font-size:16px;}
+    @media(max-width:768px){.hero h1{font-size:48px;}.title{font-size:42px;}}
+  </style>
+</head>
+<body>
+  <header><div class="logo">GL CARS</div><div class="nav"><a href="#home">Home</a><a href="#cars">Fleet</a><a href="contact.html">Book Now</a></div></header>
+
+  <section class="hero" id="home">
+    <video autoplay muted loop playsinline poster="assets/fallback.jpg"><source src="assets/video.mp4" type="video/mp4"></video>
+    <div class="hero-content">
+      <h1>GL CARS</h1>
+      <p>Luxury Self-Drive Experience in Chennai</p>
+      <a href="contact.html" class="cta">Book Instantly</a>
+    </div>
+  </section>
+
+  <section class="section" id="cars">
+    <h2 class="title">Premium Fleet 2025</h2>
+    <div class="cars-grid">
+      <div class="car-card"><img src="assets/swift.jpg" alt="Swift"><div class="info"><h3>Maruti Swift</h3><div class="price">₹2,000</div><p>24 hrs • 300 km</p><a href="contact.html" class="book">Book Now</a></div></div>
+      <div class="car-card"><img src="assets/baleno.jpg" alt="Baleno"><div class="info"><h3>Maruti Baleno</h3><div class="price">₹2,500</div><p>24 hrs • 300 km</p><a href="contact.html" class="book">Book Now</a></div></div>
+      <div class="car-card"><img src="assets/crysta.jpg" alt="Innova Crysta"><div class="info"><h3>Innova Crysta</h3><div class="price">₹3,500</div><p>Luxury 7-Seater</p><a href="contact.html" class="book">Book Now</a></div></div>
+      <div class="car-card"><img src="assets/creta.jpg" alt="Creta"><div class="info"><h3>Hyundai Creta</h3><div class="price">₹3,000</div><p>24 hrs • 300 km</p><a href="contact.html" class="book">Book Now</a></div></div>
+      <div class="car-card"><img src="assets/alto.jpg" alt="Alto"><div class="info"><h3>Maruti Alto</h3><div class="price">₹1,500</div><p>Best Budget</p><a href="contact.html" class="book">Book Now</a></div></div>
+    </div>
+  </section>
+
+  <footer><p>© 2025 GL Cars • Meenambakkam, Chennai • WhatsApp +91 81443 22422</p></footer>
+  <a href="https://wa.me/918144322422" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".hero-content", { y:100, opacity:0, duration:1.5, ease:"power4.out" });
+    gsap.utils.toArray(".car-card").forEach((c,i)=>gsap.from(c,{y:150,opacity:0,duration:1,delay:i*0.2,scrollTrigger:{trigger:c,start:"top 85%"}}));
+  </script>
+</body>
+</html>
